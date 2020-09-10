@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss'
 import classPrefix from '../class-prefix'
-import {Overlay} from '../'
+import Overlay from '../Overlay'
 
 export interface ModalConfig {
   title?: any,
