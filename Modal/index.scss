@@ -1,0 +1,52 @@
+.hz__Modal {
+  font-size: 16px;
+
+  position: fixed;
+  z-index: 999999;
+  top: 50%;
+  left: 50%;
+
+  width: 70%;
+
+  transform: translate3d(-50%,-50%,0);
+  text-align: center;
+
+  color: #fff;
+  border-radius: 10px;
+  background-color: #fff;
+  .hz__Modal-title {
+    padding: 10px 15px;
+
+    text-align: center;
+
+    color: #f94169;
+  }
+  .hz__Modal-content {
+    padding: 20px 15px;
+
+    color: #000;
+  }
+  .hz__Modal-toolbar {
+    display: flex;
+
+    height: 44px;
+
+    align-items: center;
+  }
+  .hz__Modal-ok,
+  .hz__Modal-cancle {
+    display: flex;
+
+    height: 100%;
+
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .hz__Modal-ok {
+    color: #f94169;
+  }
+  .hz__Modal-cancle {
+    color: #999;
+  }
+}

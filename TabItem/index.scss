@@ -1,0 +1,46 @@
+.hz__TabItem {
+  position: relative;
+
+  display: flex;
+  overflow-x: auto;
+
+  height: 50px;
+
+  justify-content: space-between;
+  align-items: center;
+  .hz__TabItem-item {
+    font-size: 16px;
+
+    display: flex;
+
+    height: 100%;
+    padding: 0 10px;
+
+    color: #646566;
+    background-color: #fff;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .hz__TabItem-active {
+    color: #000;
+  }
+  .hz__TabItem-active-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+
+    display: block;
+
+    width: 0;
+    height: 3px;
+
+    content: '';
+    transition: all .2s;
+    transform: translateX(0);
+
+    background-color: #f94169;
+  }
+}
