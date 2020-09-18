@@ -26,13 +26,22 @@ npm install babel-plugin-import -D
 
 ``` js
 // babel.config.js
-"plugins": [
-    ['import', {
-      libraryName: 'hz-react-ui',
-      libraryDirectory: 'lib',
-      style: true
-    }, 'hz-react-ui']
+"presets": [
+  [
+    "@babel/preset-env",
+    {
+      "useBuiltIns": "usage",
+      "corejs": 3
+    }
   ]
+],
+"plugins": [
+  ['import', {
+    libraryName: 'hz-react-ui',
+    libraryDirectory: 'lib',
+    style: true
+  }, 'hz-react-ui']
+]
 ```
 
 ## 目前库中的样式使用scss写的，并没有编译为css,需要自行安装和配置scss相关的npm包和webpack配置,源码中src文件夹为源代码，lib文件夹是用bable编译后的代码
