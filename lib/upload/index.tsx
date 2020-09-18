@@ -7,6 +7,7 @@ import './index.scss'
 
 interface Props {
   afterRead: (result: Result)=>void
+  type?: string
 }
 
 interface State {
@@ -15,11 +16,15 @@ interface State {
 
 interface Result {
   file: File,
-  content: string
+  content: string,
 }
 
 export default class Upload extends Component<Props,State> {
   inputRef: React.RefObject<HTMLInputElement>
+
+  private static defaultProps = {
+    type: 'file'
+  }
 
   constructor(props:Props){
     super(props)
@@ -78,12 +83,12 @@ export default class Upload extends Component<Props,State> {
     this.inputRef.current?.click()
   }
   render() {
-    let { children } = this.props
+    let { children, type } = this.props
 
     return (
       <div className={classPrefix('upload-input-contain')} onClick={this.triggerInput}>
         { children ? children : null }
-        <input ref={this.inputRef} style={{display:"none"}} type="file" onChange={this.fileChangeHandle} onDrop={this.dropHandle}/>
+        <input ref={this.inputRef} style={{display:"none"}} type={type} onChange={this.fileChangeHandle} onDrop={this.dropHandle}/>
       </div>
     );
   }
