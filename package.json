@@ -1,6 +1,6 @@
 {
   "name": "hz-react-ui",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "react ui",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
@@ -13,6 +13,7 @@
     "ui"
   ],
   "author": "hanzheng",
+  "email": "739998710@qq.com",
   "license": "ISC",
   "dependencies": {
     "lodash.debounce": "^4.0.8",
@@ -43,5 +44,9 @@
       "not dead",
       "not op_mini all"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allSmi/hz-react-ui"
   }
 }

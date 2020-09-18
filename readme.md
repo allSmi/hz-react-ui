@@ -1,0 +1,1 @@
+just try to write a baseComponents for react
