@@ -1,6 +1,6 @@
 {
   "name": "hz-react-ui",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "react ui",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",

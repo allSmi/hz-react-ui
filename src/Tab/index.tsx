@@ -4,15 +4,14 @@ import classPrefix from '../class-prefix'
 import TabItem from '../tab-item'
 
 interface Props {
-  index?: number
-  onChange?: Function
+  index: number
+  onChange: Function
   className?: string
 }
 
 interface State {
-  index: number,
   style: Style,
-  prevIndex: number
+  isInit: boolean
 }
 
 interface Style{
@@ -26,32 +25,30 @@ export default class componentName extends Component<Props,State> {
     super(props)
     this.tabEl = createRef()
   }
-  private static defaultProps = {
-    index: 0
-  }
   readonly state: State = {
-    index: 0,
-    prevIndex: 0,
     style: {
       translateX: 0,
       width: 0
     },
+    isInit: true
   }
   componentDidMount(){
     let index = this.props.index as number
-    this.setState({
-      index: index
-    },()=>{
-      setTimeout(() => {
-        this.calcActiveStyle()
-      },200);
-    })
+
+    this.calcActiveStyle(index,'init')
   }
 
-  calcActiveStyle=()=>{
+  componentDidUpdate(prevProps:Props){
+    if(prevProps.index !== this.props.index){
+      this.setState({
+        isInit: false
+      })
+      this.calcActiveStyle(this.props.index)
+    }
+  }
+
+  calcActiveStyle=(index:number,type?:string)=>{
     let tabEl = this.tabEl.current as HTMLDivElement
-    let index = this.state.index
-    // let prevIndex = this.state.prevIndex
     let tabItem = tabEl.querySelector('.'+ classPrefix('TabItem')) as HTMLDivElement
     let tabItemWidth = tabItem.offsetWidth
 
@@ -68,13 +65,14 @@ export default class componentName extends Component<Props,State> {
 
       let translateX = sum + activeItemWidth * 0.5 - (activeItemWidth * 0.6 * 0.5)
 
-      if(tabItem.scrollTo){
+      if(tabItem.scrollTo && type !== 'init'){
         tabItem.scrollTo({
           left: translateX - tabItemWidth / 2,
           behavior: 'smooth'
         })
       } else {
-        // 兼容ie浏览器，华为浏览器
+        // 1 兼容ie浏览器，华为浏览器
+        // 2 初始化是不加动画
         tabItem.scrollLeft = translateX - tabItemWidth / 2
       }
 
@@ -92,17 +90,11 @@ export default class componentName extends Component<Props,State> {
   // }
 
   changeItem= (index: number)=>{
-    this.setState({
-      index,
-      prevIndex: this.state.index
-    },()=>{
-      this.calcActiveStyle()
-      this.props.onChange && this.props.onChange(index)
-    })
+    this.props.onChange && this.props.onChange(index)
   }
   render() {
-    let {children,className} = this.props;
-    let { index,style } = this.state
+    let {children,className,index} = this.props;
+    let {style,isInit } = this.state
     let titles: any[] = [];
     let contents: any[] = [];
 
@@ -134,7 +126,7 @@ export default class componentName extends Component<Props,State> {
                     {item}
                   </div>
           })}
-          <div className={classPrefix('TabItem-active-indicator')} style={{
+          <div className={classPrefix('TabItem-active-indicator') + (isInit ? '' : ' ' + classPrefix('TabItem-active-indicator-transition'))} style={{
             width: style.width + 'px',
             transform: `translateX(${style.translateX + 'px'})`
           }}></div>

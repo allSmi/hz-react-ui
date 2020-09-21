@@ -38,9 +38,11 @@
     height: 3px;
 
     content: '';
-    transition: all .2s;
     transform: translateX(0);
 
     background-color: #f94169;
+  }
+  .hz__TabItem-active-indicator-transition {
+    transition: all .2s;
   }
 }
