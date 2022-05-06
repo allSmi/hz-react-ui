@@ -3,8 +3,8 @@ module.exports = {
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "usage",
-        "corejs": 3,
+        // "useBuiltIns": "usage",
+        // "corejs": 3,
         "modules": false
       }
     ],
@@ -15,6 +15,12 @@ module.exports = {
     }]
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    [
+      "@babel/transform-runtime",
+      {
+        "corejs": 3
+      }
+    ],
   ]
 }
